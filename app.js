@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id);let data,run='sol',mode='views',index=0,timer=null;
 const titles={overall_massing:'Overall massing',main_layout:'MAIN floor layout',second_layout:'SECOND floor layout',vertical_datums:'Vertical proportions',floor_slabs_voids:'Floor slabs & voids',door_openings:'Door openings',window_openings:'Window openings',roof_form:'Roof form',porch_stairs:'Porch & stairs',editable_valid_model:'Editable, valid geometry'};
 const notes={views:'Verifier-rendered comparison: private reference on the left, saved candidate on the right. Cameras, lighting and scale match; horizontal translation is normalized. These are final-state renders, not screenshots from the agent’s session.',frames:'Screenshots captured during the agent’s UI session. Orange rings mark the recorded click coordinate on the resulting screenshot; page changes can move the original target. Use the action panel for exact inputs. Arrow keys move between frames.',drawings:'These seven 2D sheets were available to both agents. The construction workspace started empty; no DWG or 3D reference was supplied.'};
-function items(){return run==='astra'&&mode!=='drawings'?[]:data[mode]}
+function items(){if(!data)return [];return run==='astra'&&mode!=='drawings'?[]:data[mode]}
 function stop(){clearInterval(timer);timer=null;$('play').textContent='Play slideshow'}
 function changeModel(value){stop();run=value;index=0;render()}
 function changeMode(value){stop();mode=value;index=0;render()}
